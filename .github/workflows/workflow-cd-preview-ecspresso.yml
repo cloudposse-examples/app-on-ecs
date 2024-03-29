@@ -190,7 +190,7 @@ jobs:
           role-skip-session-tagging: true
 
       - name: Run DB Migration
-        uses: cloudposse/github-action-run-ecspresso@0.1.0
+        uses: cloudposse/github-action-run-ecspresso@0.2.0
         continue-on-error: true
         if: ${{ inputs.enable-migration }}
         id: db_migrate
@@ -202,6 +202,8 @@ jobs:
           cluster: ${{ steps.environment.outputs.cluster }}
           application: ${{ steps.environment.outputs.name }}
           taskdef-path: ${{ inputs.path }}
+          mirror_to_s3_bucket: ${{ steps.environment.outputs.s3-bucket }}
+          use_partial_taskdefinition: 'true'
           overrides: |-
             {
               "containerOverrides":[
@@ -222,7 +224,7 @@ jobs:
           ECS_SERVICE_EXECUTION_ROLE: ${{ steps.environment.outputs.role }}-exec
 
       - name: Deploy
-        uses: cloudposse/github-action-deploy-ecspresso@0.4.0
+        uses: cloudposse/github-action-deploy-ecspresso@0.6.0
         continue-on-error: true
         if: ${{ steps.db_migrate.outcome != 'failure' }}
         id: deploy
@@ -231,10 +233,12 @@ jobs:
           image-tag: ${{ inputs.tag }}
           region: ${{ steps.environment.outputs.region }}
           operation: deploy
-          debug: false
+          debug: true
           cluster: ${{ steps.environment.outputs.cluster }}
           application: ${{ steps.environment.outputs.name }}
           taskdef-path: ${{ inputs.path }}
+          mirror_to_s3_bucket: ${{ steps.environment.outputs.s3-bucket }}
+          use_partial_taskdefinition: 'true'
           timeout: 15m
         env:
           STAGE:  ${{ steps.environment.outputs.stage }}
