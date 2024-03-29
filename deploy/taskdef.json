@@ -2,7 +2,17 @@
     "containerDefinitions": [
         {
             "name": "app",
-            "image": "{{ must_env `IMAGE` }}"
+            "image": "{{ must_env `IMAGE` }}",
+            "environment": [
+                {
+                    "name": "NON_CONFLICTING_MERGE",
+                    "value": "foobar"
+                },
+                {
+                    "name": "FOO",
+                    "value": "application-side-bar"
+                }
+            ]
         }
     ]
 }
