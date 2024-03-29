@@ -1,7 +1,4 @@
 
-
-
-
 <!-- markdownlint-disable -->
 # example-app-on-ecs <a href="https://cpco.io/homepage?utm_source=github&utm_medium=readme&utm_campaign=cloudposse/example-app-on-ecs&utm_content="><img align="right" src="https://cloudposse.com/logo-300x69.svg" width="150" /></a>
 <a href="https://github.com/cloudposse/example-app-on-ecs/releases/latest"><img src="https://img.shields.io/github/release/cloudposse/example-app-on-ecs.svg" alt="Latest Release"/></a><a href="https://slack.cloudposse.com"><img src="https://slack.cloudposse.com/badge.svg" alt="Slack Community"/></a>
