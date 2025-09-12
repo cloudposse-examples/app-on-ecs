@@ -41,7 +41,7 @@ on:
 permissions:
   contents: write
   id-token: write
-  pull-request: read
+  pull-requests: read
 
 jobs:
   changes:
