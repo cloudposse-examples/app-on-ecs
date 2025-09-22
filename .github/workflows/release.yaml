@@ -15,7 +15,7 @@ jobs:
       repository: "${{ github.event.repository.name }}"
       version: ${{ github.event.release.tag_name }}
       app: "example-${{ github.event.repository.name }}"
-      use-partial-taskdefinition: ${{ vars.USE_PARTIAL_TASK_DEFINITIONS || "false" }}
+      use-partial-taskdefinition: false
     secrets:
       github-private-actions-pat: "${{ secrets.PUBLIC_AND_PRIVATE_REPO_ACCESS_TOKEN_REPO }}"
       registry: "${{ secrets.ECR_REGISTRY }}"
