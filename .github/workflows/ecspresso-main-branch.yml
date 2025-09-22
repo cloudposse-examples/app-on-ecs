@@ -50,6 +50,11 @@ on:
         type: boolean
         required: false
         default: false
+      use-partial-taskdefinition:
+        description: "Use partial task definition (ecspresso)"
+        required: false
+        type: boolean
+        default: true
       app:
         description: "Application name. Used with monorepo pattern when there are several applications in the repo"
         required: false
@@ -94,6 +99,7 @@ jobs:
       enable-migration: ${{ inputs.enable-migration }}
       support-rollback: ${{ inputs.support-rollback }}
       app: ${{ inputs.app }}
+      use-partial-taskdefinition: ${{ inputs.use-partial-taskdefinition }}
     secrets:
       secret-outputs-passphrase: "${{ secrets.secret-outputs-passphrase }}"
       github-private-actions-pat: "${{ secrets.github-private-actions-pat }}"

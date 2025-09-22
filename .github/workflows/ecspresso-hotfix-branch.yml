@@ -1,12 +1,12 @@
 name: |-
   Hotfix branch (Pull request into release/* branches) workflow 
-  
+
   Build, test Docker image, deploy it with Spacelift to `hotfix` environment depends of PR labels  
-  
+
   ### Usage 
-  
+
   Create in your repo  __`.github/workflows/hotfix-branch.yaml`__
-  
+
   ```yaml
     name: Hotfix Branch
     on:
@@ -73,6 +73,16 @@ on:
         description: "Application name. Used with monorepo pattern when there are several applications in the repo"
         required: false
         type: string
+      use-partial-taskdefinition:
+        description: "Use partial task definition (ecspresso)"
+        type: boolean
+        required: false
+        default: true
+      deploy-timeout:
+        description: "Timeout for ecspresso deploy step (e.g., 10m, 30m)"
+        type: string
+        required: false
+        default: 10m
     secrets:
       secret-outputs-passphrase:
         description: "Passphrase to encrypt/decrypt secret outputs with gpg. For more information [read](https://github.com/cloudposse/github-action-secret-outputs)"
@@ -104,7 +114,7 @@ jobs:
 
   cd:
     uses: ./.github/workflows/workflow-cd-preview-ecspresso.yml
-    needs: [ ci ]
+    needs: [ci]
     if: ${{ always() }}
     with:
       image: ${{ needs.ci.outputs.image }}
@@ -119,6 +129,8 @@ jobs:
       app: ${{ inputs.app }}
       env-label: |
         hotfix: deploy
+      use-partial-taskdefinition: ${{ inputs.use-partial-taskdefinition || '' }}
+      timeout: ${{ inputs.deploy-timeout }}
     secrets:
       secret-outputs-passphrase: ${{ secrets.secret-outputs-passphrase }}
       github-private-actions-pat: ${{ secrets.github-private-actions-pat }}

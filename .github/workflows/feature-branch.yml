@@ -18,6 +18,7 @@ jobs:
       labels: ${{ toJSON(github.event.pull_request.labels.*.name) }}
       ref: ${{ github.event.pull_request.head.ref  }}
       app: "example-${{ github.event.repository.name }}" # example-app-on-ecs
+      use-partial-taskdefinition: true
 
     secrets:
       github-private-actions-pat: "${{ secrets.PUBLIC_AND_PRIVATE_REPO_ACCESS_TOKEN_REPO }}"

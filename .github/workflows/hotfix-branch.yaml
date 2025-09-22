@@ -1,7 +1,7 @@
 name: Hotfix Branch
 on:
   pull_request:
-    branches: [ 'release/**' ]
+    branches: ["release/**"]
     types: [opened, synchronize, reopened, closed, labeled, unlabeled]
 
 concurrency:
@@ -18,6 +18,7 @@ jobs:
       labels: ${{ toJSON(github.event.pull_request.labels.*.name) }}
       ref: ${{ github.event.pull_request.head.ref  }}
       app: "example-${{ github.event.repository.name }}"
+      use-partial-taskdefinition: ${{ vars.USE_PARTIAL_TASK_DEFINITIONS || "false" }}
       # enable-migration: false # defaults to false
       # support-rollback: false # defaults to false
     secrets:
