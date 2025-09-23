@@ -167,7 +167,7 @@ The minimum required setup is to have the image defined by the environment varia
 ### How Partial Task Definitions Work
 
 1. **Template Processing**: Ecspresso processes the partial task definition template
-2. **Environment Variable Substitution**: Variables like `{{ must_env \`IMAGE\` }}` are replaced with actual values
+2. **Environment Variable Substitution**: Variables like ```{{ must_env `IMAGE` }}``` are replaced with actual values
 3. **Infrastructure Integration**: The ECS service configuration from Terraform provides:
   - Task CPU and memory settings
   - Network configuration
