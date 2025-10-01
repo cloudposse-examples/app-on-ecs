@@ -12,14 +12,14 @@ import (
 func main() {
 	c := os.Getenv("COLOR")
 	if len(c) == 0 {
-		c = "red"
+		c = "blue"
 	}
-	
+
 	addr := os.Getenv("LISTEN")
 	if len(addr) == 0 {
 		addr = ":8080"
 	}
-	
+
 	count := 0
 
 	m := http.NewServeMux()
