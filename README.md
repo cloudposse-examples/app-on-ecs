@@ -26,6 +26,9 @@
 
 -->
 
+> [!WARNING]
+> **This repository is deprecated.** Please use [app-on-ecs-v2](https://github.com/cloudposse-examples/app-on-ecs-v2) instead.
+
 Example Dockerized application deployed on ECS.
 
 
